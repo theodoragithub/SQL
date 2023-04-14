@@ -1,0 +1,18 @@
+CREATE TABLE market_goods(id INTEGER PRIMARY KEY, name TEXT, price INTEGER, basketnumber INTEGER, quantity INTEGER);
+INSERT INTO market_goods VALUES(1,"apple bag",5,2,12);
+INSERT INTO market_goods VALUES(2,"banana bunch",2,1,10);
+INSERT INTO market_goods VALUES(3,"peach box",4,3,5);
+INSERT INTO market_goods VALUES(4,"blueberry box",6,3,3);
+INSERT INTO market_goods VALUES(5,"mango",1,6,7);
+INSERT INTO market_goods VALUES(6,"dark chocolate",3,4,4);
+INSERT INTO market_goods VALUES(7,"milk chocolate",3,4,2);
+INSERT INTO market_goods VALUES(8,"honey bottle",6,7,4);
+INSERT INTO market_goods VALUES(9,"cherry box",3,3,8);
+INSERT INTO market_goods VALUES(10,"raspberry box",3,3,4);
+INSERT INTO market_goods VALUES(11,"orange",2,5,23);
+INSERT INTO market_goods VALUES(12,"marrionberry box",5,3,1);
+INSERT INTO market_goods VALUES(13,"white chocolate",4,4,2);
+INSERT INTO market_goods VALUES(14,"honey sticks",1,7,15);
+INSERT INTO market_goods VALUES(15,"grape bunch",3,1,6);
+SELECT * FROM market_goods ORDER BY price;
+SELECT * FROM market_goods WHERE basketnumber = 3;
