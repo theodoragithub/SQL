@@ -1,0 +1,35 @@
+#Quering a database using Postgres SQL to answer questions
+
+SELECT * FROM "CharlotteChaze/BreakIntoTech"."netflix_people";
+
+#Finding movie title count within database
+
+SELECT COUNT("title") 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" 
+WHERE type = 'movie';
+
+#Finding most recent batch of tv shows and/or movies added to database
+
+SELECT MAX("date_added")
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+#List all the movies and tv shows in alphabetical order
+
+SELECT ("title") FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ORDER BY "title" asc;
+
+#Finding the director for the movie Bright Star
+
+SELECT director
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+LEFT JOIN  "CharlotteChaze/BreakIntoTech"."netflix_people" people
+ON titles.show_id=people.show_id
+where titles.title='Bright Star'
+
+#Finding oldest movie in the database and year it was made
+
+SELECT release_year, title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type = 'Movie'
+ORDER BY release_year asc
+LIMIT 1;
