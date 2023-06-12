@@ -1,0 +1,60 @@
+#Using SQL to analyze a database with multiple tables in it to quantify statistics about customer and order data. 
+
+#Quantity of orders placed in January 
+
+SELECT COUNT(orderID) 
+FROM JanSales
+WHERE length(orderid) = 6 
+AND orderid <> 'Order ID';
+
+#iPhone sales in the month of January
+
+SELECT COUNT(orderID) 
+FROM JanSales
+WHERE product = 'iPhone'
+AND length(orderid) = 6 
+AND orderid <> 'Order ID';
+
+#Selecting account numbers for customers who had placed February orders
+
+SELECT distinct acctnum
+FROM FebSales
+JOIN customers
+ON customers.order_id = FebSales.orderID
+WHERE length(orderid) = 6 
+AND orderid <> 'Order ID';
+
+#Finding lest expensive product sold in January along with product price
+
+SELECT product, price
+FROM JanSales
+WHERE length(orderid) = 6 
+AND orderid <> 'Order ID'
+ORDER BY price asc
+LIMIT 1;
+
+#Finding total revenue of products sold in January
+
+SELECT SUM(quantity)*price AS revenue, product
+FROM JanSales
+WHERE length(orderid) = 6 
+AND orderid <> 'Order ID'
+GROUP BY product;
+
+#Products that were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+
+SELECT product, SUM(price)*quantity AS revenue, sum(quantity)
+FROM FebSales
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+AND length(orderid) = 6 
+AND orderid <> 'Order ID';
+
+#Number of customers and average money spent from customers with orders of 2 or more items
+
+SELECT COUNT(DISTINCT customers.acctnum), avg(Quantity*price)
+FROM FebSales
+LEFT JOIN customers
+ON customers.order_id= FebSales.orderID
+WHERE FebSales.Quantity >2
+AND length(orderid) = 6 
+AND orderid <> 'Order ID';
